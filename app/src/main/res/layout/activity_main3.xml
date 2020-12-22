@@ -110,6 +110,7 @@
         android:layout_width="234dp"
         android:layout_height="57dp"
         android:layout_marginTop="15dp"
+        android:onClick="go_edit"
         android:text="Edit My Info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

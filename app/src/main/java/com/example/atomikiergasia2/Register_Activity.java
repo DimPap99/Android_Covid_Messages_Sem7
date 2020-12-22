@@ -17,7 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity2 extends AppCompatActivity {
+public class Register_Activity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     EditText email;
@@ -42,7 +42,7 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
 
-
+//Register user with firebase auth the following code is from the docs
     public void register(View view){
 
         mAuth.createUserWithEmailAndPassword(
