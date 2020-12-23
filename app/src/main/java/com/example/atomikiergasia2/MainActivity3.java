@@ -34,6 +34,8 @@ public class MainActivity3 extends AppCompatActivity {
     public static int SUCCESFUL_EDIT = 999;
     public static int EDIT_ACTIVITY = 998;
     public static int BACK = 1000;
+    public static int CREATE_MESSAGE_ACTIVITY = 1001;
+    public static int SUCCESFUL_MESSAGE_CREATION = 1002;
     SharedPreferences preferences;
 
     public Button go_edit;
@@ -50,6 +52,10 @@ public void setInfo(){
         }}
 }
 
+public void getMessagesAndCodes(){
+
+}
+
 //initialize
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +69,7 @@ public void setInfo(){
         if(preferences.contains("DB_NAME")){
             //open db
         db = openOrCreateDatabase(preferences.getString("DB_NAME",""), Context.MODE_PRIVATE, null);
+        db.execSQL("CREATE TABLE IF NOT EXISTS Messages(code INTEGER PRIMARY KEY ,message TEXT)");
         setInfo();
         String temp_txt = full_name_txt.getText().toString();
         full_name_txt.setText(temp_txt +  " " + full_name);}
@@ -92,5 +99,10 @@ public void setInfo(){
         intent.putExtra("email", email);
 
         startActivityForResult(intent, EDIT_ACTIVITY);
+    }
+
+    public void create_new_msg(View view){
+        Intent intent = new Intent(getApplicationContext(), EditUser_Activity.class);
+        startActivityForResult(intent, CREATE_MESSAGE_ACTIVITY);
     }
 }

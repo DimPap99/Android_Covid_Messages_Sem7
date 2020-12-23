@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.editTextTextPersonName2);
         preferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-
+        editor.putString("MESSAGES_TABLE", "Messages" );
         editor.putString("DB_NAME", "UserDB" );
         editor.putString("USER_TABLE", "User" );
         editor.apply();
