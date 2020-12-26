@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("MESSAGES_TABLE", "Messages" );
         editor.putString("DB_NAME", "UserDB" );
         editor.putString("USER_TABLE", "User" );
+
         editor.apply();
         mAuth = FirebaseAuth.getInstance();
     }
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Login success!",Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
                             intent.putExtra("email",email.getText().toString());
+                            intent.putExtra("user_id", currentUser.getUid().toString());
                             startActivity(intent);
                         }else {
                             Toast.makeText(getApplicationContext(),

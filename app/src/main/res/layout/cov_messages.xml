@@ -4,31 +4,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
+
 
     <TextView
         android:id="@+id/code"
-        android:layout_width="123dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="140dp"
+        android:layout_width="596dp"
+        android:layout_height="142dp"
+        android:layout_marginTop="244dp"
+        android:background="#E7ED23"
         android:gravity="center"
-        android:text="Code:"
-        android:textSize="18sp"
+        android:minHeight="40dp"
+        android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.264"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/cov_message"
-        android:layout_width="338dp"
-        android:layout_height="168dp"
-        android:layout_marginTop="52dp"
-        android:gravity="center"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/code" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
