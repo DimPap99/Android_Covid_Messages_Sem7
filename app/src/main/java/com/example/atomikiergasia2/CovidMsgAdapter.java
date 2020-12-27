@@ -17,7 +17,7 @@ public class CovidMsgAdapter extends BaseAdapter {
 
     public LayoutInflater layoutInflater;
     public Context context;
-    //init use lists to populate the textviews of the cov_messages.xml
+    //init use lists to populate the textviews of the messages.xml
     public CovidMsgAdapter(Context aContext, List<String> listData, List<String> listData2) {
         this.context = aContext;
         this.messages = listData;
@@ -57,7 +57,7 @@ public class CovidMsgAdapter extends BaseAdapter {
         }
 
         // set the textviews based on the position of the item in the listview
-        holder.message.setText("Description: " + this.messages.get(position));
+        holder.message.setText( this.messages.get(position));
         holder.code.setText(this.codes.get(position));
 
 

@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AtomikiErgasia2">
-        <activity android:name=".CreateMessage_Activity"></activity>
+        <activity android:name=".EditMessage_Activity"></activity>
+        <activity android:name=".CreateMessage_Activity" />
         <activity android:name=".EditUser_Activity" />
         <activity android:name=".MainActivity3" />
         <activity android:name=".MainActivity">

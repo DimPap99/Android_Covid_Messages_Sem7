@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
@@ -19,14 +18,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
-
-    public static boolean created_edittexts = false; //monitor whether we ve dynamically created edittexts on Login/Register
+//initialize
     Button register_b;
     Button login_b;
     EditText email;
     EditText password;
     private FirebaseAuth mAuth;
-    SharedPreferences preferences;
 
     FirebaseUser currentUser;
     public static final String SHARED_PREFS = "db_info";
@@ -38,17 +35,11 @@ public class MainActivity extends AppCompatActivity {
         register_b = findViewById(R.id.button3);
         email = findViewById(R.id.editTextTextPersonName);
         password = findViewById(R.id.editTextTextPersonName2);
-        preferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("MESSAGES_TABLE", "Messages" );
-        editor.putString("DB_NAME", "UserDB" );
-        editor.putString("USER_TABLE", "User" );
 
-        editor.apply();
         mAuth = FirebaseAuth.getInstance();
     }
 
-
+//register --> go to register activity
     public void register(View view){
         Intent intent = new Intent(view.getContext(), Register_Activity.class);
 
@@ -65,8 +56,9 @@ public class MainActivity extends AppCompatActivity {
                             currentUser = mAuth.getCurrentUser();
                             Toast.makeText(getApplicationContext(),"Login success!",Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                            //add email, user_id in order for them to be used in querying sqlite and firebasedb respectively
                             intent.putExtra("email",email.getText().toString());
-                            intent.putExtra("user_id", currentUser.getUid().toString());
+                            intent.putExtra("user_id", currentUser.getUid().toString()); // ---> unique id for everyuser that will be used in Users FirebaseDB node
                             startActivity(intent);
                         }else {
                             Toast.makeText(getApplicationContext(),

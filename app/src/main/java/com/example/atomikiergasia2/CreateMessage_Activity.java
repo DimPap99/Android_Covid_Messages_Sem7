@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.SharedPreferences;
+
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -12,13 +12,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static com.example.atomikiergasia2.MainActivity.SHARED_PREFS;
 
 public class CreateMessage_Activity extends AppCompatActivity {
-
+//initialise
     TextView codetxt;
     TextView msgtxt;
-    SharedPreferences preferences;
     SQLiteDatabase db;
     public int result_code;
 
@@ -26,12 +24,12 @@ public class CreateMessage_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //init values
         setContentView(R.layout.activity_create_message_2);
         codetxt = findViewById(R.id.editTextTextPersonName9);
         msgtxt = findViewById(R.id.editTextTextPersonName10);
-        preferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE); //get shared prefs for the db info
-        db = openOrCreateDatabase(preferences.getString("DB_NAME",""), Context.MODE_PRIVATE, null);
-        result_code = 1000;
+        db = openOrCreateDatabase(getResources().getString(R.string.db_name), Context.MODE_PRIVATE, null);
+        result_code = 1000; //BACK RES CODE
 
 
     }
@@ -42,13 +40,14 @@ public class CreateMessage_Activity extends AppCompatActivity {
         boolean success = false;
         if( checkValues() == true) {
             try{
+                //get the values from the edittexts
             int code = Integer.parseInt(codetxt.getText().toString());
             String message = msgtxt.getText().toString();
-            ContentValues insertValues = new ContentValues();
+            ContentValues insertValues = new ContentValues();//insert the values into the SQLITE db
             insertValues.put("code", code);
             insertValues.put("message", message);
-            db.insert(preferences.getString("MESSAGES_TABLE",""), null, insertValues);
-            success = true;
+            db.insert(getResources().getString(R.string.table_messages), null, insertValues);
+            success = true; //succesful insertion
             }
             catch (NumberFormatException | SQLException e){ //catch sql exception in case the user gives a code that is already registered in the db
                 Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_LONG).show();
@@ -61,7 +60,7 @@ public class CreateMessage_Activity extends AppCompatActivity {
         }
         if(success == true){
             Toast.makeText(getApplicationContext(),"The message was created succesfully!",Toast.LENGTH_LONG).show();
-            result_code = 1002;
+            result_code = 1002; //success code
         }
     }
 
@@ -71,7 +70,7 @@ public class CreateMessage_Activity extends AppCompatActivity {
     }
 
 
-    public boolean checkValues(){
+    public boolean checkValues(){ //check that the edittexts are not empty
         if(codetxt.getText().toString().equals("") || msgtxt.getText().toString().equals("")){
             return false;
         }else return true;

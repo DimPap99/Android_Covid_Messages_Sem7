@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Register_Activity extends AppCompatActivity {
 
@@ -26,7 +28,12 @@ public class Register_Activity extends AppCompatActivity {
     EditText address;
     FirebaseUser currentUser;
     SQLiteDatabase db;
-//initialize db, firebase, refference ui components
+    FirebaseDatabase database_fb;
+    DatabaseReference myRef;
+    DatabaseReference userRef;
+
+
+    //initialize db, firebase, refference ui components
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +63,10 @@ public class Register_Activity extends AppCompatActivity {
                             insertUser(email.getText().toString(), password.getText().toString(), fullname.getText().toString(), address.getText().toString());
                             currentUser = mAuth.getCurrentUser();
                             setResult(1000);
+                            database_fb = FirebaseDatabase.getInstance();
+
+                            myRef = database_fb.getReference("Users/" + currentUser.getUid().toString());
+                            myRef.setValue(new User(email.getText().toString(), fullname.getText().toString(), address.getText().toString()));
                             finish();
 
                         } else {
@@ -85,4 +96,6 @@ public class Register_Activity extends AppCompatActivity {
         values.put("address", address);
         db.insert("User",null, values);
     }
+
+
 }
